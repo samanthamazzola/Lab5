@@ -1,5 +1,3 @@
-# Lab5
-
 using System;
 
 namespace Lab5
@@ -10,79 +8,50 @@ namespace Lab5
 
         static void Main(string[] args)
         {
-            long i;
+           
             long inputNum;
-            long factorial;
+            string userChoice = "y";
 
             //prompt
             Console.WriteLine("Welcome to the Factorial Calculator!");
 
-
-            while (toCalculate)
+            // while condition is y
+            while (userChoice.ToLower()=="y")
             {
 
                 //input
                 Console.WriteLine("Please enter an integer that is greater than 0, but less than 10:");
-                string inputNum = Console.ReadLine();
+                string input = Console.ReadLine();
 
-                if (int.TryParse(inputNum, out int j))
+                // if valid input
+                if (input.Length == 0) 
+                    continue;
+                inputNum = long.Parse(input);
 
+                // if invalid input
+                if (inputNum >= 10 || inputNum < 1)
                 {
-                    int number = int.Parse(inputNum);
-
-                    if (inputNum > 0 && inputNum < 10)
-                    {
-                        long factorial = Findfactorial(inputNum);
-                        Console.WriteLine("The factorial of " + inputNum + " is: " + factorial);
-                    }
-                    else
-                    {
-                        Console.WriteLine("Number must be greater than 0 but less than 10");
-
-                    }
+                    Console.WriteLine("Sorry! That's an invalid input!");
+                    continue;
                 }
-            }
-            else
-            {
-                Console.WriteLine("Please write a number.");
-            }
-                Restart();
-            }
 
-            Console.ReadKey();
-
-        //find the factorial calulation
-            public static long Findfactorial(int inputNum)
-            {
-                if (inputNum == 0)
-
-                    return 1;
+                // for loop 
+                long factorial = 1;
+                for (long i = inputNum; i > 0; i --)
                 {
-                    long factorial = 1;
-
-                    for (i = inputNum - 1; i >= 1; i--)
-                    {
-
-                        factorial = factorial * i;
-                    }
-
-                    return factorial;
+                    factorial = factorial * i;
                 }
-                // validate based on y or n
-                public static void toCalculate() 
-                {
-                    Console.WriteLine("Would you like to continue? Enter y/n:");
 
-                    var userInput = Console.ReadKey().KeyChar;
+                // output
+                Console.WriteLine("The factorial of " + inputNum + " is: " + factorial);
 
-                    if (userInput != "y")
-                    {
-                        toCalculate = false;
-                        Console.WriteLine("Thank you for using the Factorial Calculator!");
-                    }
-                }
-            }
-        }
-    }
-}
 
+                // validation prompt
+                Console.WriteLine("Would you like to continue? Enter y/n:");
+
+                userChoice = Console.ReadLine();
+
+             }
+         }
+     }
+ }
